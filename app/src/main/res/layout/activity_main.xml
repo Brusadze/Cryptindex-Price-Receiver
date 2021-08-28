@@ -12,6 +12,6 @@
         android:layout_width="wrap_content"
         android:textSize="20sp"
         android:textColor="@android:color/black"
-        />
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

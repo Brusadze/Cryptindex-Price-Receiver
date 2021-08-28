@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,10 +22,13 @@ import java.net.URL;
 
 public  class fetchData extends AsyncTask {
     public String value = "";
+    public float x;
+
 
     @Override
-    protected Object doInBackground(Object[] objects) {
+    public Object doInBackground(Object[] objects) {
         String data = "";
+
 
         try {
 
@@ -39,10 +43,16 @@ public  class fetchData extends AsyncTask {
             }
 
             JSONObject object = new JSONObject(data);
+            //GETTING FLOAT FROM JSON OBJECT
+            float x = BigDecimal.valueOf(object.getDouble("price")).floatValue();
 
             System.out.println(object.get("symbol"));
-            System.out.println(object.get("price"));
-            value = (String) object.get("symbol");
+            System.out.println(x);
+
+            Getters getters = new Getters();
+            getters.start();
+
+
 
 
         } catch (MalformedURLException e) {
