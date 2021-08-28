@@ -7,7 +7,7 @@ public class Getters {
     public void start() {
         fetchData _fetchData = new fetchData();
         setPrice = _fetchData.x;
-        System.out.println("SETPRICE " + setPrice); // Btc price 
+        System.out.println("SETPRICE " + setPrice); // Btc price
     }
 
 

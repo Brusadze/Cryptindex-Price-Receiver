@@ -20,18 +20,17 @@ import java.net.URL;
 
 
 
-public  class fetchData extends AsyncTask {
+public  class fetchData extends AsyncTask<Void,Void,Void> {
     public String value = "";
     public float x;
+    public String symbol;
+    public String price;
 
 
     @Override
-    public Object doInBackground(Object[] objects) {
+    protected Void doInBackground(Void... voids) {
         String data = "";
-
-
         try {
-
             URL url = new URL("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = httpURLConnection.getInputStream();
@@ -45,14 +44,10 @@ public  class fetchData extends AsyncTask {
             JSONObject object = new JSONObject(data);
             //GETTING FLOAT FROM JSON OBJECT
             float x = BigDecimal.valueOf(object.getDouble("price")).floatValue();
-
+            this.price = object.get("price").toString();
             System.out.println(object.get("symbol"));
+            this.symbol = object.get("symbol").toString();
             System.out.println(x);
-
-            Getters getters = new Getters();
-            getters.start();
-
-
 
 
         } catch (MalformedURLException e) {
@@ -66,8 +61,9 @@ public  class fetchData extends AsyncTask {
 
         return null;
     }
-
-    public String getValue(String values) {
-        return values;
+    protected void onPostExecute(Void aVoid){
+        super.onPostExecute(aVoid);
+        MainActivity.data.setText(this.symbol);
+        MainActivity.price.setText(this.price);
     }
 }
