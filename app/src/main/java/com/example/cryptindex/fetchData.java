@@ -45,6 +45,7 @@ public  class fetchData extends AsyncTask<Void,Void,Void> {
             //GETTING FLOAT FROM JSON OBJECT
             float x = BigDecimal.valueOf(object.getDouble("price")).floatValue();
             this.price = object.get("price").toString();
+
             System.out.println(object.get("symbol"));
             this.symbol = object.get("symbol").toString();
             System.out.println(x);
@@ -64,6 +65,6 @@ public  class fetchData extends AsyncTask<Void,Void,Void> {
     protected void onPostExecute(Void aVoid){
         super.onPostExecute(aVoid);
         MainActivity.data.setText(this.symbol);
-        MainActivity.price.setText(this.price);
+        MainActivity.price.setText(this.price.substring(0,this.price.length() - 5));
     }
 }
