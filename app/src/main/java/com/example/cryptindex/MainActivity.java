@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         data = (TextView)findViewById(R.id.text_view_result);
         price = (TextView)findViewById(R.id.textViewPrice);
-        /*
+        /* runs only once
         fetchData receive = new fetchData();
         receive.execute();
         */
@@ -33,10 +33,11 @@ public class MainActivity extends AppCompatActivity {
         mHandler = new Handler();
         startRepeatingTask();
 
+
         //lastValue = receive.value;
         //textView.setText(lastValue);
         //textView.setText("Anything"); //WORKS
-        // textView.setText(receive.value); //DOES NOT WORK
+        //textView.setText(receive.value); //DOES NOT WORK
 
     }
     @Override
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         mHandler.removeCallbacks(mStatusChecker);
     }
     void updateStatus(){
-        mInterval = 3000;
+        //mInterval = 3000;
         fetchData receive = new fetchData();
         receive.execute();
 

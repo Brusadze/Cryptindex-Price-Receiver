@@ -68,16 +68,20 @@ public  class fetchData extends AsyncTask<Void,Void,Void> {
         MainActivity.data.setText(this.symbol);
         MainActivity.price.setText(this.price.substring(0,this.price.length() - 5));
         MainActivity.oldPrice = this.x;
-       // wait(3000);
+        System.out.println(MainActivity.oldPrice + "    OLDDDDDDD");
+        wait(3000); //waiting 3 second for next line
+        System.out.println(MainActivity.newPrice + "   NEWWWW");
         MainActivity.newPrice = this.x;
         //NO LOGIC WORKING NOW
         if(MainActivity.oldPrice < MainActivity.newPrice)
             MainActivity.price.setTextColor(Color.RED);
+        else if (MainActivity.oldPrice == MainActivity.newPrice)
+            MainActivity.price.setTextColor(Color.YELLOW);
         else
             MainActivity.price.setTextColor(Color.GREEN);
     }
 
-/*    public static void wait(int ms)         //WAITS ms Milliseconds to run next line
+   public static void wait(int ms)         //WAITS ms Milliseconds to run next line
     {
         try
         {
@@ -87,5 +91,5 @@ public  class fetchData extends AsyncTask<Void,Void,Void> {
         {
             Thread.currentThread().interrupt();
         }
-    } */
+    }
 }
