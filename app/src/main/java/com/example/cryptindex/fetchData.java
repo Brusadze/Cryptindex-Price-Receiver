@@ -1,6 +1,7 @@
 package com.example.cryptindex;
 
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.widget.TextView;
 
@@ -43,7 +44,7 @@ public  class fetchData extends AsyncTask<Void,Void,Void> {
 
             JSONObject object = new JSONObject(data);
             //GETTING FLOAT FROM JSON OBJECT
-            float x = BigDecimal.valueOf(object.getDouble("price")).floatValue();
+            this.x = BigDecimal.valueOf(object.getDouble("price")).floatValue();
             this.price = object.get("price").toString();
 
             System.out.println(object.get("symbol"));
@@ -66,5 +67,25 @@ public  class fetchData extends AsyncTask<Void,Void,Void> {
         super.onPostExecute(aVoid);
         MainActivity.data.setText(this.symbol);
         MainActivity.price.setText(this.price.substring(0,this.price.length() - 5));
+        MainActivity.oldPrice = this.x;
+       // wait(3000);
+        MainActivity.newPrice = this.x;
+        //NO LOGIC WORKING NOW
+        if(MainActivity.oldPrice < MainActivity.newPrice)
+            MainActivity.price.setTextColor(Color.RED);
+        else
+            MainActivity.price.setTextColor(Color.GREEN);
     }
+
+/*    public static void wait(int ms)         //WAITS ms Milliseconds to run next line
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+    } */
 }

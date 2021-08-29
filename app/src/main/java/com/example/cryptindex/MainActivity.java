@@ -12,7 +12,11 @@ public class MainActivity extends AppCompatActivity {
     public static TextView data;
     public static TextView price;
 
-    private int mInterval = 5000; // 5 seconds by default, can be changed later
+    public static float oldPrice;
+    public static float newPrice;
+
+
+    private int mInterval = 3000; // 5 seconds by default, can be changed later
     private Handler mHandler;
 
     @Override
@@ -63,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         mInterval = 3000;
         fetchData receive = new fetchData();
         receive.execute();
+
+
     }
 
 } // MainAct
